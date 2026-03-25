@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数独挑战 30 关</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Sudoku Arcade</p>
+          <h1>数独挑战 30 关</h1>
+          <p class="hero-copy">
+            从入门到进阶，共 30 个关卡。每完成一关，都由你决定是否进入下一关。
+          </p>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span>当前关卡</span>
+            <strong id="level-badge">1 / 30</strong>
+          </div>
+          <div class="stat-card">
+            <span>难度</span>
+            <strong id="difficulty-badge">简单</strong>
+          </div>
+          <div class="stat-card">
+            <span>进度</span>
+            <strong id="progress-badge">已解锁 1 关</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <section class="game-panel">
+          <div class="toolbar">
+            <label class="level-picker">
+              <span>切换关卡</span>
+              <select id="level-select" aria-label="选择关卡"></select>
+            </label>
+            <div class="toolbar-actions">
+              <button id="prev-level" class="ghost-button" type="button">上一关</button>
+              <button id="next-level" class="ghost-button" type="button">下一关</button>
+            </div>
+          </div>
+
+          <div id="board" class="board" aria-label="数独棋盘"></div>
+
+          <div class="keypad" id="keypad" aria-label="数字键盘"></div>
+        </section>
+
+        <aside class="side-panel">
+          <section class="info-card">
+            <h2>操作台</h2>
+            <p id="status-text">请选择空白格，使用数字键盘或键盘输入 1-9。</p>
+            <div class="summary-grid">
+              <div>
+                <span>剩余空格</span>
+                <strong id="empty-count">0</strong>
+              </div>
+              <div>
+                <span>错误数字</span>
+                <strong id="mistake-count">0</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="info-card actions-card">
+            <button id="erase-cell" type="button">清空当前格</button>
+            <button id="hint-cell" type="button">提示一格</button>
+            <button id="check-board" type="button">检查答案</button>
+            <button id="restart-level" class="ghost-button" type="button">重置本关</button>
+          </section>
+
+          <section class="info-card tips-card">
+            <h2>规则提示</h2>
+            <ul>
+              <li>每行必须填入 1-9，且不能重复。</li>
+              <li>每列必须填入 1-9，且不能重复。</li>
+              <li>每个 3x3 宫格必须填入 1-9，且不能重复。</li>
+            </ul>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <div id="level-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card">
+        <p class="eyebrow">关卡完成</p>
+        <h2 id="modal-title">本关已完成</h2>
+        <p id="modal-copy">是否进入下一关？</p>
+        <div class="modal-actions">
+          <button id="stay-level" class="ghost-button" type="button">留在当前关卡</button>
+          <button id="advance-level" type="button">进入下一关</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
