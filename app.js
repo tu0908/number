@@ -195,7 +195,7 @@ function bindEvents() {
   });
 
   elements.eraseCell.addEventListener("click", () => fillSelectedCell(0));
-  elements.restartLevel.addEventListener("click", () => loadLevel(state.currentLevel, true));
+  elements.restartLevel.addEventListener("click", resetCurrentLevel);
   elements.hintCell.addEventListener("click", revealHint);
   elements.checkBoard.addEventListener("click", inspectBoard);
   elements.stayLevel.addEventListener("click", closeModal);
@@ -209,7 +209,7 @@ function bindEvents() {
       return;
     }
 
-    if (!state.selectedCell) {
+    if (state.selectedCell === null) {
       return;
     }
 
@@ -243,6 +243,15 @@ function loadLevel(levelIndex, forceReset) {
 
   renderBoard();
   syncUi();
+  saveProgress();
+}
+
+function resetCurrentLevel() {
+  const level = levels[state.currentLevel];
+  state.solvedLevels.delete(level.id);
+  state.completionPromptShown.delete(level.id);
+  loadLevel(state.currentLevel, true);
+  elements.statusText.textContent = `${level.title} 已重置，当前进度已清空。`;
   saveProgress();
 }
 
